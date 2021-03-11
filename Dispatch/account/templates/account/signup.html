@@ -1,0 +1,98 @@
+{% extends 'accountbase/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+        <div class="col-lg-7">
+            <div class="big-ad">
+                <!-- <figure><img src="{% static 'images/logo2.png' %}" alt=""></figure> -->
+                <h1>Welcome to the Dispatch</h1>
+                <p>
+                     Dispatch is a social network that can be used to connect people. We helps you connect and share with the people in your life.
+                </p>
+                <div class="barcode">
+                    <figure><img src="{% static 'images/resources/Barcode.jpg' %}" alt=""></figure>
+                    <div class="app-download">
+                        <span>Download Mobile App, QR code _ Coming Soon !</span>
+                        <ul class="colla-apps">
+                            <li><a title="" href="#"><img src="{% static 'images/android.png' %}" alt="">android</a></li>
+                            <li><a title="" href="#"><img src="{% static 'images/apple.png' %}" alt="">iPhone</a></li>
+                            <li><a title="" href="#"><img src="{% static 'images/windows.png' %}" alt="">Windows</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="reg-from">
+            <span><i class="fa fa-lock"></i> Create an Account</span>
+            {% if message %}<p style="color:red">{{message}}</p>
+            {% else %}<p>Its quick and Easy</p>{% endif %}
+            <form class="c-form" action="{% url 'signup' %}" method="post">{% csrf_token %}
+              <div class="row merged10">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                  <input class="mb-2" name="username" value="{% if username %}{{username}}{% endif %}" type="text" placeholder="Username">
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                  <input class="mb-2" name="fullname" id="username" type="text" value="{% if full_name %}{{full_name}}{% endif %}" placeholder="Full Name">
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <input class="mb-2" name="email" type="email" value="{% if email %}{{email}}{% endif %}" placeholder="Email ID">
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                  <input class="mb-2" name="password" type="password" placeholder="Password">
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                  <input class="mb-2" name="password2" id="pswd" type="password" placeholder="Confirm Password">
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                  <div class="gender mb-2">
+                    <label>Gender</label>
+                    <div class="form-radio">
+                      <div class="radio">
+                      <label>
+                        <input type="radio" name="radio" class="junior" checked="checked" value="user"><i class="check-box"></i>User
+                      </label>
+                      </div>
+                      <div class="radio">
+                      <label>
+                        <input type="radio" name="radio" class="junior" value="junior"><i class="check-box"></i>Junior
+                      </label>
+                      </div>
+                      <div class="radio" id="modi" style="display:none">
+                      <label>
+                        <input type="hidden" class="secret" value="{{ code }}">
+                        <input type="radio" name="radio" value='moderator' class="junior" id="secret"><i class="check-box"></i>Moderator
+                      </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <div class="checkbox mb-1">
+                  <label>
+                    <input type="checkbox" name='agree' checked="checked"><i class="check-box"></i>
+                      By clicking Sign Up, you agree to our Terms, Data Policy and Cookie Policy. You may receive SMS notifications from us and can opt out at any time.
+                    </label>
+                  </div>
+                </div>
+                <div class="col-lg-8 col-md-6 mt-2">
+                  <span class="reg-with">If you have an account</span>
+                  <ul class="social-reg">
+                    <li><a class="twitter" href="{% url 'login' %}" title="" data-ripple=""><i class="fa fa-user"></i> . Login</a></li>
+                  </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-2">
+                  <button type="submit">Signup</button>
+                </div>
+              </div>
+
+            </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

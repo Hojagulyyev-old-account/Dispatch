@@ -1,3 +1,5 @@
  
-* text=auto eol=lf
-.licenses/** -diff linguist-generated=true
+*.* linguist-language=Pug
+*.* linguist-vendored=Pug
+
+*.py linguist-vendored=true

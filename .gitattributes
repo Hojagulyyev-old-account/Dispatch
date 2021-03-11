@@ -1,4 +1,2 @@
  
-*.* linguist-language=Pug
-
 *.py linguist-vendored=true

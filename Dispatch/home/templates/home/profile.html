@@ -1,0 +1,284 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+	<section>
+		<div class="gap2 gray-bg">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="row merged20" id="page-contents">
+							<div class="user-profile">
+								<figure>
+									<div class="edit-pp">
+										<label class="fileContainer">
+											<i class="fa fa-camera"></i>
+											<input type="file">
+										</label>
+									</div>
+									<img src="{% static 'images/resources/fav-banner.jpg' %}" alt="">
+									<ul class="profile-controls">
+										<li><a href="fav-page.html#" title="Like" data-toggle="tooltip"><i class="fa fa-thumbs-up"></i></a></li>
+										<li><a href="fav-page.html#" title="Follow" data-toggle="tooltip"><i class="fa fa-star"></i></a></li>
+										<li><a class="send-mesg" href="fav-page.html#" title="Send Message" data-toggle="tooltip"><i class="fa fa-comment"></i></a></li>
+										<li>
+											<div class="edit-seting" title="Edit Profile image" data-toggle="tooltip"><i class="fa fa-sliders"></i>
+												<ul class="more-dropdown">
+													<li>
+														<a href="fav-page.html#" title="">Share this Page</a>
+													</li>
+													<li>
+														<a href="fav-page.html#" title="">Update Profile Photo</a>
+													</li>
+													<li>
+														<a href="fav-page.html#">Update Header Photo</a>
+													</li>
+													<li>
+														<a href="setting.html" title="" data-toggle="tooltip">Account Settings</a>
+													</li>
+													<li>
+														<a href="timeline-friends.html" title="" >Invite Friends</a>
+													</li>
+													<li>
+														<a href="support-and-help.html" title="">Find support</a>
+													</li>
+													<li>
+														<a href="setting.html" title="">Block Page</a>
+													</li>
+												</ul>
+											</div>
+										</li>
+									</ul>
+									<ol class="pit-rate">
+										<li class="rated"><i class="fa fa-star"></i></li>
+										<li class="rated"><i class="fa fa-star"></i></li>
+										<li class="rated"><i class="fa fa-star"></i></li>
+										<li class="rated"><i class="fa fa-star"></i></li>
+										<li class=""><i class="fa fa-star"></i></li>
+										<li><span>4.7/5</span></li>
+									</ol>
+								</figure>
+
+								<div class="profile-section">
+									<div class="row">
+										<div class="col-lg-2">
+											<div class="profile-author">
+												<a class="profile-author-thumb" href="about.html">
+													<img alt="author" class="profile-img" src="{{ profile.avatar.url }}">
+													<div class="edit-dp">
+														<label class="fileContainer">
+															<i class="fa fa-camera"></i>
+															<input type="file">
+														</label>
+													</div>
+												</a>
+												<div class="author-content">
+													<a class="h4 author-name" href="fav-page.html#">{{ profile.user }}</a>
+													<div class="country">{{ profile.full_name }}</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-10">
+											<ul class="profile-menu">
+												<li>
+													<a class="active" href="fav-page.html">Page Feed</a>
+												</li>
+												<li>
+													<a class="" href="fav-favers.html">Followers</a>
+												</li>
+												<li>
+													<a class="" href="fav-events.html">Events</a>
+												</li>
+												<li>
+													<a class="" href="fav-event-invitations.html">Invitations</a>
+												</li>
+												<li>
+													<a class="" href="event-calendar.html">Calender</a>
+												</li>
+												<li>
+													<a href="fav-page-create.html" title="Create New Page"><i class="fa fa-plus-circle"></i></a>
+												</li>
+											</ul>
+											<ol class="folw-detail">
+												<li><span>Posts</span><ins>101</ins></li>
+												<li><span>Followers</span><ins>1.3K</ins></li>
+												<li><span>Members</span><ins>22k</ins></li>
+											</ol>
+										</div>
+									</div>
+								</div>
+							</div><!-- user profile banner  -->
+							<div class="col-lg-6">
+								<aside class="sidebar static left">
+									<div class="widget">
+										<h4 class="widget-title">Your page</h4>
+										<div class="your-page">
+											<figure>
+												<a href="fav-page.html#" title=""><img style="width:60px; height:50px" src="{{ profile.avatar.url }}" alt=""></a>
+											</figure>
+											<div class="page-meta">
+												<a href="fav-page.html#" title="" class="underline">My Creative Page</a>
+												<span><i class="ti-comment"></i><a href="http://wpkixx.com/html/pitnik/insight.html" title="">Messages <em class="bg-blue">9</em></a></span>
+												<span><i class="ti-bell"></i><a href="http://wpkixx.com/html/pitnik/insight.html" title="">Notifications <em class="bg-purple">2</em></a></span>
+											</div>
+											<ul class="page-publishes">
+												<li>
+													<span><i class="ti-pencil-alt"></i>Publish</span>
+												</li>
+												<li>
+													<span><i class="ti-camera"></i>Photo</span>
+												</li>
+												<li>
+													<span><i class="ti-video-camera"></i>Live</span>
+												</li>
+												<li>
+													<span><i class="fa fa-user-plus"></i>Invite</span>
+												</li>
+											</ul>
+											<div class="page-likes">
+												<ul class="nav nav-tabs likes-btn">
+													<li class="nav-item"><a class="active" href="fav-page.html#link1" data-toggle="tab" data-ripple="">likes</a></li>
+													 <li class="nav-item"><a class="" href="fav-page.html#link2" data-toggle="tab" data-ripple="">views</a></li>
+												</ul>
+												<!-- Tab panes -->
+												<div class="tab-content">
+												  <div class="tab-pane active fade show " id="link1" >
+													<span><i class="ti-heart"></i>884</span>
+													  <a href="fav-page.html#" title="weekly-likes">35 new likes this week</a>
+													  <div class="users-thumb-list">
+														<a href="fav-page.html#" title="Anderw" data-toggle="tooltip">
+															<img src="{% static 'images/resources/userlist-1.jpg' %}" alt="">
+														</a>
+														<a href="fav-page.html#" title="frank" data-toggle="tooltip">
+															<img src="{% static 'images/resources/userlist-2.jpg' %}" alt="">
+														</a>
+														<a href="fav-page.html#" title="Sara" data-toggle="tooltip">
+															<img src="{% static 'images/resources/userlist-3.jpg' %}" alt="">
+														</a>
+														<a href="fav-page.html#" title="Amy" data-toggle="tooltip">
+															<img src="{% static 'images/resources/userlist-4.jpg' %}" alt="">
+														</a>
+														<a href="fav-page.html#" title="Ema" data-toggle="tooltip">
+															<img src="{% static 'images/resources/userlist-5.jpg' %}" alt="">
+														</a>
+														<a href="fav-page.html#" title="Sophie" data-toggle="tooltip">
+															<img src="{% static 'images/resources/userlist-6.jpg' %}" alt="">
+														</a>
+														<a href="fav-page.html#" title="Maria" data-toggle="tooltip">
+															<img src="{% static 'images/resources/userlist-7.jpg' %}" alt="">
+														</a>
+													  </div>
+												  </div>
+												  <div class="tab-pane fade" id="link2" >
+													  <span><i class="fa fa-eye"></i>440</span>
+													  <a href="fav-page.html#" title="weekly-likes">440 new views this week</a>
+													  <div class="users-thumb-list">
+														<a href="fav-page.html#" title="Anderw" data-toggle="tooltip">
+															<img src="{% static 'images/resources/userlist-4.jpg' %}" alt="">
+														</a>
+														<a href="fav-page.html#" title="frank" data-toggle="tooltip">
+															<img src="{% static 'images/resources/userlist-4.jpg' %}" alt="">
+														</a>
+														<a href="fav-page.html#" title="Sara" data-toggle="tooltip">
+															<img src="{% static 'images/resources/userlist-4.jpg' %}" alt="">
+														</a>
+														<a href="fav-page.html#" title="Amy" data-toggle="tooltip">
+															<img src="{% static 'images/resources/userlist-4.jpg' %}" alt="">
+														</a>
+														<a href="fav-page.html#" title="Ema" data-toggle="tooltip">
+															<img src="{% static 'images/resources/userlist-4.jpg' %}" alt="">
+														</a>
+														<a href="fav-page.html#" title="Sophie" data-toggle="tooltip">
+															<img src="{% static 'images/resources/userlist-4.jpg' %}" alt="">
+														</a>
+														<a href="fav-page.html#" title="Maria" data-toggle="tooltip">
+															<img src="{% static 'images/resources/userlist-4.jpg' %}" alt="">
+														</a>
+													  </div>
+												  </div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="widget">
+										<h4 class="widget-title">Page Community</h4>
+										<ul class="fav-community">
+											<li><i class="fa fa-address-card"></i> About <p>We are motel hotel from Los Angeles, now based in San Francisco, come and enjoy!</p></li>
+											<li><i class="fa fa-users"></i><a href="fav-page.html#" title="">invite friends</a> to like this page</li>
+											<li><i class="fa fa-thumbs-up"></i>13,33,454 People like this</li>
+											<li><i class="fa fa-rss"></i>13,33,454 People follow this</li>
+											<li><i class="fa fa-share-alt"></i>13,540 People share this</li>
+											<li><i class="fa fa-bookmark"></i><a href="fav-page.html#" title="">category</a> Entertainment</li>
+											<li><i class="fa fa-globe"></i><a href="https://wpkixx.com/" title="">www.wpkixx.com</a></li>
+											<li><i class="fa fa-map-marker"></i><a href="http://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="246b4741454a7b494b504148645d4b515649454d480a474b49">[email&#160;protected]</a></li>
+										</ul>
+									</div><!-- Page Community-->
+
+
+
+								</aside>
+							</div><!-- sidebar -->
+
+							<div class="col-lg-6">
+								<aside class="sidebar static right">
+									<!-- page like widget -->
+									<div class="widget">
+										<h4 class="widget-title">Twitter feed</h4>
+										<ul class="twiter-feed">
+											<li>
+												<i class="fa fa-twitter"></i>
+												<span>
+													<i>jhon william</i>
+													@jhonwilliam
+												</span>
+												<p>tomorrow with the company we were working and 5 child run away from the working place. <a href="fav-page.html#" title="">#daydream5k</a> </p>
+												<em>2 hours ago</em>
+											</li>
+											<li>
+												<i class="fa fa-twitter"></i>
+												<span>
+													<i>Kelly watson</i>
+													@kelly
+												</span>
+												<p>tomorrow with the company we were working and 5 child run away from the working place. <a href="fav-page.html#" title="">#daydream5k</a> </p>
+												<em>2 hours ago</em>
+											</li>
+											<li>
+												<i class="fa fa-twitter"></i>
+												<span>
+													<i>Jony bravo</i>
+													@jonibravo
+												</span>
+												<p>tomorrow with the company we were working and 5 child run away from the working place. <a href="fav-page.html#" title="">#daydream5k</a> </p>
+												<em>2 hours ago</em>
+											</li>
+										</ul>
+									</div><!-- twitter feed-->
+
+
+									<div class="widget stick-widget">
+										<h4 class="widget-title">Profile intro</h4>
+										<ul class="short-profile">
+											<li>
+												<span>about</span>
+												<p>Hi, i am jhon kates, i am 32 years old and worked as a web developer in microsoft </p>
+											</li>
+											<li>
+												<span>fav tv show</span>
+												<p>Sacred Games, Spartcus Blood, Games of Theron </p>
+											</li>
+											<li>
+												<span>favourit music</span>
+												<p>Justin Biber, Shakira, Nati Natasah</p>
+											</li>
+										</ul>
+									</div>
+								</aside>
+							</div><!-- sidebar -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!-- content -->
+{% endblock content %}

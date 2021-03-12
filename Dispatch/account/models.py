@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    return 'user_{0}/{1}'.format(instance.profile, instance.profile.id)
+    return 'user_{0}/{1}'.format(instance.user, instance.user.id)
 
 class AllCodes(models.Model):
     title = models.CharField(max_length=64)
@@ -37,6 +37,8 @@ class Profile(models.Model):
     def __str__(self):
         return self.full_name
 
+    def get_absolute_url(self):
+        return reverse('home:profile', args=[self.full_name])
 
     class Meta:
         verbose_name = 'Profile'

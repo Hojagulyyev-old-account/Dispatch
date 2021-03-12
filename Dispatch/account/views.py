@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
@@ -104,7 +104,7 @@ def signup(request):
             profile.save()
             print(profile)
 
-            return HttpResponseRedirect(reverse('signuphtml'))
+            return HttpResponseRedirect(reverse('login'))
 
 
         else:

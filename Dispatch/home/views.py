@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.decorators import login_required
 from account.models import Profile
+from .models import Post, Tag
 # Create your views here.
 
 def home(request):
@@ -10,15 +11,18 @@ def home(request):
 
     profile = Profile.objects.get(user=request.user)
 
+    posts = Post.objects.all()
+
     template_name = "home/home.html"
     context = {
-        "profile":profile
+        'posts':posts,
+        'profile':profile
     }
     return render(request, template_name, context)
 
 @login_required
 def profile(request, user):
-    profile = Profile.objects.get(full_name=user)
+    profile = get_object_or_404(Profile, user__username=user)
 
     template_name = "home/profile.html"
     context = {

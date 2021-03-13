@@ -6,6 +6,7 @@ import datetime
 from django.contrib.auth.models import User
 from .models import AllCodes, Profile
 
+
 # Create your views here.
 def login(request):
     username = request.POST.get('username', '')
@@ -83,10 +84,21 @@ def signup(request):
                                             'full_name':full_name,
                                             'message':'Moderator password is wrong !',
                                         })
+
             users = User.objects.all()
+            for letter in username:
+                if letter == ' ':
+                    return render(request, 'account/signup.html', {
+                                            'username':username,
+                                            'email':email,
+                                            'full_name':full_name,
+                                            'message':'Your username has empty letter, fill in empty fields!',
+                                        })
+
             for user in users:
                 if username == user.username:
                     return render(request, 'account/signup.html', {
+                                            'username':username,
                                             'email':email,
                                             'full_name':full_name,
                                             'message':'Username is already taken, Please choose another one !',

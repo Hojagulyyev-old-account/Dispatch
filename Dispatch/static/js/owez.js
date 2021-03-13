@@ -9,6 +9,13 @@ $(document).ready(function(){
     }
   });
 
+  var input = $("#inputik").on('click', function(){
+    if (input.css('color') === 'rgb(245, 31, 17)'){
+      input.css('color', 'black')
+    }
+  });
+
+
   function ChangePlaceholder(e) {
     if (e === 2){
       $("#pswd").attr("placeholder", "Junior Password")

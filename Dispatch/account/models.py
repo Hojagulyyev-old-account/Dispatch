@@ -35,10 +35,10 @@ class Profile(models.Model):
     type = models.CharField(choices=USER_TYPE, max_length=10, default='user')
 
     def __str__(self):
-        return self.full_name
+        return f'{self.user.username}'
 
     def get_absolute_url(self):
-        return reverse('home:profile', args=[self.full_name])
+        return reverse('home:profile', args=[self.user])
 
     class Meta:
         verbose_name = 'Profile'

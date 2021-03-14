@@ -9,4 +9,5 @@ urlpatterns = [
     path('createpost/', views.CreatePost, name='createpost'),
     path('updateposthtml/<uuid:pk>/', views.updatepost, name='updateposthtml'),
     path('updatepost/<uuid:pk>/', views.UpdatePost, name='updatepost'),
+    path('deletepost/<uuid:pk>/', views.DeletePost, name='deletepost'),
 ]

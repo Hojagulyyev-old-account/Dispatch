@@ -4,10 +4,10 @@ from .models import Tag, Post
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('profile', 'type', 'created')
+    list_display = ('profile', 'type', 'created', 'trash')
     list_display_links = ('profile',)
     # search_fields = ('profile','body')
-    list_editable = ('type',)
+    list_editable = ('type','trash')
 
 
 @admin.register(Tag)

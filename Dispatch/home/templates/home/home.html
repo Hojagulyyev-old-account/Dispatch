@@ -1056,7 +1056,7 @@
                               <div class="more-post-optns"><i class="ti-more-alt"></i>
                                 <ul>
                                   {% if post.profile.user == user %}
-                                    <li><i class="fa fa-pencil-square-o"></i><a href="{% url 'home:updatepost' post.id %}">Edit Post</a></li>
+                                    <li><i class="fa fa-pencil-square-o"></i><a href="{% url 'home:updateposthtml' post.id %}">Edit Post</a></li>
                                     <li><i class="fa fa-trash-o"></i>Delete Post</li>
                                   {% else %}
                                     <!-- <li><i class="fa fa-wpexplorer"></i>Select as favourite</li>-->

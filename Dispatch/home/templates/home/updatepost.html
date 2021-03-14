@@ -4,6 +4,7 @@
 <section>
   <div class="gap gray-bg">
     <div class="container">
+      <br>
       <div class="row merged20">
         <div class="col-lg-9">
           <div class="forum-warper">
@@ -51,28 +52,63 @@
               </div>
             </div><!-- title block -->
           </div>
+          <br><br>
           <div class="forum-form">
             <div class="central-meta">
-              <form method="post" enctype="multipart/form-data" class="c-form">{% csrf_token %}
-                <div>
-                  <label>Image</label>
-                  {{ form.image }}
-                </div>
-                <div>
-                  <label>Post's body</label>
-                  {{ form.body }}
-                </div>
+              <form method="post" action="{% url 'home:updatepost' post.id %}" enctype="multipart/form-data" class="c-form">{% csrf_token %}
+                {% if post.image %}
+                <span class="create-post">Edit Post Image</span>
+                <div class="attachments">
+                  <ul>
+                    <li>
+                      <i class="fa fa-plus"></i>
+                      <label class="fileContainer">
+                      </label>
+                    </li>
+                    <li>
+                      <i class="fa fa-image"></i>
+                      <label class="fileContainer">
+                        <input name="image" type="file">
+                      </label>
+                    </li>
+                  </ul>
+								</div>
+                <p>{{ post.image.url }}</p>
+                {% else %}
+                <span class="create-post">This post has no image</span>
+                <div class="attachments">
+                  <ul>
+                    <li>
+                      <i class="fa fa-plus"></i>
+                      <label class="fileContainer">
+                      </label>
+                    </li>
+                    <li>
+                      <i class="fa fa-image"></i>
+                      <label class="fileContainer">
+                      </label>
+                    </li>
+                  </ul>
+								</div>
+                <p>This post has no image</p>
+                {% endif %}
+                <br><br>
+									<div>
+                    <span class="create-post">Edit Post Body</span>
+										<textarea name="body" rows="3"  placeholder="{{ post.body }}"></textarea>
+									</div>
 
-                <div>
-                  <button class="main-btn" type="submit" data-ripple="">Update</button>
-                  <!-- <button class="main-btn3" type="submit" data-ripple="">Cancel</button> -->
-                </div>
-              </form>
+									<div>
+										<button class="main-btn" type="submit" data-ripple="">Update</button>
+									</div>
+								</form>
             </div>
           </div>
         </div>
       </div>
+      <br><br>
     </div>
+    <br><br><br><br>
   </div>
 </section>
 {% endblock content %}

@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # pip packeges
+    'widget_tweaks',
     # Django apps
     'home',
     'django_cleanup',

@@ -5,7 +5,7 @@ from account.models import Profile
 from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import UpdateView, DeleteView
 from .models import Post, Tag
-from .forms import PostForm
+from .forms import PostUpdateForm
 from django.views.generic.edit import CreateView
 # Create your views here.
 
@@ -50,12 +50,38 @@ def CreatePost(request):
 
     return HttpResponseRedirect(reverse('home:home'))
 
+def updatepost(request, pk):
+    post = Post.objects.get(id=pk)
+    context = {
+        'post':post
+    }
+    return render(request, 'home/updatepost.html', context)
 
-class UpdatePost(UpdateView):
-    model = Post
-    fields = ['body', 'image']
-    # template_name_suffix = '_profile'
-    template_name = 'home/updatepost.html'
-    slug_field = 'pk'
-    slug_url_kwarg = 'pk'
-    success_url = reverse_lazy('home:home')
+def UpdatePost(request, pk):
+    post = Post.objects.get(id=pk)
+
+    if request.method == 'POST':
+        image = request.FILES.get('image', '')
+        body = request.POST.get('body', '')
+        post.image = image
+        post.body = body
+        post.save()
+        return HttpResponseRedirect(reverse('home:home'))
+
+    context = {
+        'post':post
+    }
+
+    return render(request, 'home/updatepost.html', context)
+    # model = Post
+    # fields = ['body', 'image']
+    # # form_class = PostUpdateForm
+    # # template_name_suffix = '_profile'
+    # template_name = 'home/updatepost.html'
+    # slug_field = 'pk'
+    # slug_url_kwarg = 'pk'
+    # success_url = reverse_lazy('home:home')
+# 
+# def DeletePost(request, pk):
+#     post = Post.objects.get(id=pk)
+#     post.delete()

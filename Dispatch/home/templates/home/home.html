@@ -1056,10 +1056,10 @@
                               <div class="more-post-optns"><i class="ti-more-alt"></i>
                                 <ul>
                                   {% if post.profile.user == user %}
-                                    <li><i class="fa fa-pencil-square-o"></i>Edit Post</li>
+                                    <li><i class="fa fa-pencil-square-o"></i><a href="{% url 'home:updatepost' post.id %}">Edit Post</a></li>
                                     <li><i class="fa fa-trash-o"></i>Delete Post</li>
                                   {% else %}
-                                    <!-- <li><i class="fa fa-wpexplorer"></i>Select as favourite</li> -->
+                                    <!-- <li><i class="fa fa-wpexplorer"></i>Select as favourite</li>-->
                                     <li class="bad-report"><i class="fa fa-flag"></i>Report Post</li>
                                   {% endif %}
                                   <!-- <li><i class="fa fa-address-card-o"></i>Boost This Post</li>
@@ -1076,7 +1076,7 @@
 
                             <figure>
                               {% if post.type == 'image' %}
-                              <img src="{% static 'images/slide.png' %}" alt="">
+                              <img src="{{ post.image.url }}" alt="">
                               {% endif %}
                               <ul class="like-dislike">
                                 <li><a class="bg-purple" href="#" title="Save to Pin Post"><i class="fa fa-thumb-tack"></i></a></li>
@@ -1121,9 +1121,9 @@
                                 </li>
                               </ul>
                               <div class="users-thumb-list">
-                                <a data-toggle="tooltip" title="Anderw" href="#">
+                                <!-- <a data-toggle="tooltip" title="Anderw" href="#">
                                   <img alt="" src="{% static 'images/resources/userlist-1.jpg' %}">
-                                </a>
+                                </a> -->
                                 <a data-toggle="tooltip" title="frank" href="#">
                                   <img alt="" src="{% static 'images/resources/userlist-2.jpg' %}">
                                 </a>

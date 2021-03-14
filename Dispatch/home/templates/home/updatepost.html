@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section>
+  <div class="gap gray-bg">
+    <div class="container">
+      <div class="row merged20">
+        <div class="col-lg-9">
+          <div class="forum-warper">
+            <div class="central-meta">
+              <div class="title-block">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="align-left">
+                      <h5>Update Post</h5>
+                    </div>
+                  </div>
+                  <!-- <div class="col-lg-6">
+                    <div class="row">
+                      <div class="col-lg-7 col-md-6">
+                        <form method="post">
+                          <input type="text" placeholder="Search...">
+                          <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                      </div>
+                      <div class="col-lg-4 col-md-4">
+                        <div class="select-options">
+                          <select class="select">
+                            <option>Sort by</option>
+                            <option>See All</option>
+                            <option>Newest</option>
+                            <option>oldest</option>
+                            <option>A to Z</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-lg-1 col-md-2">
+                        <div class="option-list">
+                          <i class="fa fa-ellipsis-v"></i>
+                          <ul>
+                            <li class="active"><i class="fa fa-check"></i><a title="" href="forum-create-topic.html#">Show Public</a></li>
+                            <li><a title="" href="forum-create-topic.html#">Show only Friends</a></li>
+                            <li><a title="" href="forum-create-topic.html#">Hide all Posts</a></li>
+                            <li><a title="" href="forum-create-topic.html#">Mute Notifications</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+            </div><!-- title block -->
+          </div>
+          <div class="forum-form">
+            <div class="central-meta">
+              <form method="post" enctype="multipart/form-data" class="c-form">{% csrf_token %}
+                <div>
+                  <label>Image</label>
+                  {{ form.image }}
+                </div>
+                <div>
+                  <label>Post's body</label>
+                  {{ form.body }}
+                </div>
+
+                <div>
+                  <button class="main-btn" type="submit" data-ripple="">Update</button>
+                  <!-- <button class="main-btn3" type="submit" data-ripple="">Cancel</button> -->
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

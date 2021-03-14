@@ -11,17 +11,8 @@ from .models import Post, Tag
 @login_required
 def home(request):
     profile = Profile.objects.get(user=request.user)
-
     posts = Post.objects.filter(trash=False)
-    # for post in posts:
-    #     hashtag = post.body.split('#')
-    #     counter = 0
-    #     for hash in hashtag:
-    #         counter += 1
-    #         if counter == 1:
-    #             pass
-    #         else:
-    #
+
 
     template_name = "home/home.html"
     context = {
@@ -47,10 +38,35 @@ def CreatePost(request):
     if request.method == 'POST':
         image = request.FILES.get('image', '')
         body = request.POST.get('body', '')
+        tags_objs = []
+        tags = []
+
+        hashtag = body.split('#')
+
+        counter = 0
+        for hash in hashtag:
+            counter += 1
+            if counter == 1:
+                pass
+            else:
+                new_hash = hash.split(' ')
+                c = 0
+                for i in new_hash:
+                    c += 1
+                    if c == 1:
+                        tags.append(i)
+
+
+        for tag in tags:
+            t, created = Tag.objects.get_or_create(title=tag, slug=tag)
+            tags_objs.append(t)
+
         if not image:
             post = Post.objects.create(body=body, image=image, profile=profile, type='question')
         else:
             post = Post.objects.create(body=body, image=image, profile=profile, type='image')
+
+        post.tag.set(tags_objs)
         post.save()
 
     return HttpResponseRedirect(reverse('home:home'))

@@ -9,6 +9,42 @@ $(document).ready(function(){
     }
   });
 
+  $('.post_body').each(function(index){
+      var cls = $.trim($(this).text());
+      var parts = cls.split(" ");
+      var postEl = $(this);
+      // const tgs = $(".hashtags")
+      // $.each(tgs, function(i, e){
+      //   console.log(i)
+      //   console.log(e)
+      // })
+      $.each(parts, function(k, v){
+        if (v.charAt(0) == '#'){
+          // v.css('color', 'red')
+          var link = document.createElement('a');
+          $(link).attr('href', '/')
+          link.append(v)
+          // console.log(link)
+          // console.log(postEl.html());
+          postEl.html(postEl.html().replaceAll(v,
+              '<a href="'+tag_show_url+v+'">'+v+'</a>'
+          ));
+          console.log(v);
+          // console.log(v, link);
+          // console.log(postEl.html());
+          // $(this).remove();
+        }
+        //
+        // if (v !== 'undefined'){
+        //   v.replaceWith(link)
+        // }
+        //tag.replaceWith()
+      });
+
+  });
+
+
+
   var input = $("#inputik").on('click', function(){
     if (input.css('color') === 'rgb(245, 31, 17)'){
       input.css('color', 'black')

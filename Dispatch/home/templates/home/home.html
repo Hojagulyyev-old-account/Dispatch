@@ -1084,12 +1084,19 @@
                                 <li><a class="bg-red" href="#" title="dislike Post"><i class="ti-thumb-down"></i></a></li>
                               </ul>
                             </figure>
+                            <div style="display:block">
+                              <ul>
+                                {% for t in post.tag.all %}
+                                <li  class="hashtags">{{ t }}</li>
+                                {% endfor %}
+                              </ul>
+                            </div>
 
                             <div class="description">
                               {% if post.type == 'image' %}
                               <a href="#" class="learnmore" data-ripple="">Learn More</a>
                               {% endif %}
-                              <p>
+                              <p class="post_body ">
                                 {% if post.body|length >= 300 %}
                                   {{ post.body|truncatewords:"25" }}
                                   <a href="#" title=""> Read More</a>
@@ -1934,4 +1941,7 @@
     </div>
   </div>
 </section>
+<script type="text/javascript">
+  window.tag_show_url = 'blabla.com/tags/';
+</script>
 {% endblock content %}

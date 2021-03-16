@@ -5,6 +5,7 @@ from account.models import Profile
 from django.urls import reverse, reverse_lazy
 # from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from .models import Post, Tag
+from django.core import serializers
 #from .forms import PostUpdateForm
 # Create your views here.
 
@@ -109,3 +110,14 @@ def DeletePost(request, pk):
     post.trash = True
     post.save()
     return HttpResponseRedirect(reverse('home:home'))
+
+
+def find_hash_tag(request, hashtag):
+    tag = Tag.objects.get(title=hashtag)
+    posts = Post.objects.filter(tag=tag)
+    context = {
+        'posts':posts,
+        'tag':tag,
+    }
+    return render(request, 'home/hashtags.html', context)
+    # return JsonResponse(serializers.serialize('json', posts), safe=False)

@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
   var x = $("#username").on("keyup", function(){
     const i = x.val();
     var z = $('.secret').val();
@@ -29,10 +30,10 @@ $(document).ready(function(){
           var clean_hash = v.substring(1)
           var lower = clean_hash.toLowerCase();
           postEl.html(postEl.html().replaceAll(v,
-              `<a href="hashtag/${lower}">${v}</a>`
+              `<a href="/hashtag/${lower}">${v}</a>`
           ));
           // console.log(v, link);
-          console.log(postEl.html());
+          // console.log(postEl.html());
           // $(this).remove();
         }
         //
@@ -43,6 +44,20 @@ $(document).ready(function(){
       });
 
   });
+
+  // $('.post_body a').on('click', function(e) {
+  //     console.log('clicked');
+  //       // e.preventDefault();
+  //     $.get($(this).data('href'), function(data) {
+  //       arr = JSON.parse(data);
+  //       // console.log(arr);
+  //
+  //       Object.keys(arr).forEach(key => {
+  //         console.log( arr[key]['fields']['body']);
+  //       });
+  //
+  //     });
+  // });
 
 
 

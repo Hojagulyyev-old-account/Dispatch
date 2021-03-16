@@ -7,27 +7,27 @@ var slideImages = [],
     tl, //timeline
     emptyProgBarsTimer;
 
-
-window.addEventListener("load", initialise);
-
-function initialise()
-{	
-	getSlides();
-	createSelectorBtns();
-	createProgBarTimeline();
-	current = 0;
-	target = 1;
-		
-  /* 
-  Most browsers now support element.classList.add()
-  & element.classList.remove()
-  
-  check browser support for your project needs:
-  http://caniuse.com/#search=classlist
-  */
-	selectorBtns[current].classList.add('selected-btn');
-	updateProgBars();
-}
+// 
+// window.addEventListener("load", initialise);
+//
+// function initialise()
+// {
+// 	getSlides();
+// 	createSelectorBtns();
+// 	createProgBarTimeline();
+// 	current = 0;
+// 	target = 1;
+//
+//   /*
+//   Most browsers now support element.classList.add()
+//   & element.classList.remove()
+//
+//   check browser support for your project needs:
+//   http://caniuse.com/#search=classlist
+//   */
+// 	selectorBtns[current].classList.add('selected-btn');
+// 	updateProgBars();
+// }
 
 
 function getSlides()
@@ -40,7 +40,7 @@ function getSlides()
 	{
 		slideImages = document.querySelectorAll(".slide");
 	}
-  
+
   numSlides = slideImages.length;
 }
 
@@ -48,36 +48,36 @@ function getSlides()
 function createSelectorBtns()
 {
 	var btnsWrapper = document.getElementById('btns-wrapper');
-  
+
 	for(var i=0; i<numSlides; i++)
 	{
 		var selectorID = "selector"+i;
 		var progBarID = "prog-bar"+i;
-   
+
     var btn = document.createElement("button");
 		btn.classList.add('selector-btn');
 		btn.id = selectorID;
-		
+
 		if(i==numSlides-1)
 		{
 			//no prog-bar for last btn
 			btnsWrapper.appendChild(btn);
 		}
 		else
-		{	
+		{
 			var progBar = document.createElement("div");
 			progBar.classList.add('prog-bar');
-			
+
 			var progBarSpan = document.createElement("span");
 			progBarSpan.id = progBarID;
 			progBarSpan.style.width = '0';
-			
+
       btnsWrapper.appendChild(btn);
 			btnsWrapper.appendChild(progBar);
 			progBar.appendChild(progBarSpan);
       progBars[i] = progBarSpan;
 		}
-    
+
     selectorBtns[i] = btn;
 		selectorBtns[i].addEventListener('click', goToSlide);
 		selectorBtns[i].slideIndex = i;
@@ -105,7 +105,7 @@ function createProgBarTimeline()
 /*===Timers & Updates==*/
 
 function updateProgBars()
-{	
+{
 	if(target==0 && !onDemand)
 	{
 		//empty ALL after 5 sec
@@ -123,7 +123,7 @@ function updateIndex()
 {
 	selectorBtns[current].classList.remove('selected-btn');
 	current = target;
-  
+
 	if(current == numSlides-1)
 	{
 		target=0;
@@ -132,10 +132,10 @@ function updateIndex()
 	{
 		target += 1;
 	}
-	
+
 	selectorBtns[current].classList.add('selected-btn');
 	onDemand = false;
-	
+
 	updateProgBars();
 }
 
@@ -155,10 +155,10 @@ function goToSlide(e)
 	{
 		onDemand = true;
 		clearTimeout(emptyProgBarsTimer);
-		
+
 		target = e.target.slideIndex;
 		var targetLabel = "index"+(target);
-		
+
 		tl.timeScale(20);
 		tl.tweenTo(targetLabel, {onComplete:changeSlide});
 	}
@@ -171,7 +171,7 @@ function fadeOut(e)
 	e.classList.add('fade-out');
 }
 
-function fadeIn(e) 
+function fadeIn(e)
 {
 	e.classList.remove('fade-out');
 	e.classList.add('fade-in');

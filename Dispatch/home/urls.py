@@ -10,4 +10,5 @@ urlpatterns = [
     path('updateposthtml/<uuid:pk>/', views.updatepost, name='updateposthtml'),
     path('updatepost/<uuid:pk>/', views.UpdatePost, name='updatepost'),
     path('deletepost/<uuid:pk>/', views.DeletePost, name='deletepost'),
+    path('hashtag/<str:hashtag>/', views.find_hash_tag, name='find_hash_tag'),
 ]

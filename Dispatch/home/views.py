@@ -54,6 +54,7 @@ def CreatePost(request):
                 for i in new_hash:
                     c += 1
                     if c == 1:
+                        print(i)
                         tags.append(i)
 
 

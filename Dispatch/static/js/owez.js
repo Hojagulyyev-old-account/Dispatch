@@ -21,17 +21,18 @@ $(document).ready(function(){
       $.each(parts, function(k, v){
         if (v.charAt(0) == '#'){
           // v.css('color', 'red')
-          var link = document.createElement('a');
-          $(link).attr('href', '/')
-          link.append(v)
+          // var link = document.createElement('a');
+          // $(link).attr('href', '/')
+          // link.append(v)
           // console.log(link)
           // console.log(postEl.html());
+          var clean_hash = v.substring(1)
+          var lower = clean_hash.toLowerCase();
           postEl.html(postEl.html().replaceAll(v,
-              '<a href="'+tag_show_url+v+'">'+v+'</a>'
+              `<a href="hashtag/${lower}">${v}</a>`
           ));
-          console.log(v);
           // console.log(v, link);
-          // console.log(postEl.html());
+          console.log(postEl.html());
           // $(this).remove();
         }
         //

@@ -86,8 +86,33 @@ def UpdatePost(request, pk):
     if request.method == 'POST':
         image = request.FILES.get('image', '')
         body = request.POST.get('body', '')
+        tags_objs = []
+        tags = []
+
+        hashtag = body.split('#')
+
+        counter = 0
+        for hash in hashtag:
+            counter += 1
+            if counter == 1:
+                pass
+            else:
+                new_hash = hash.split(' ')
+                c = 0
+                for i in new_hash:
+                    c += 1
+                    if c == 1:
+                        print(i)
+                        tags.append(i)
+
+        for tag in tags:
+            t, created = Tag.objects.get_or_create(title=tag, slug=tag)
+            tags_objs.append(t)
+
         post.image = image
         post.body = body
+        post.tag.set(tags_objs)
+
         post.save()
         return HttpResponseRedirect(reverse('home:home'))
 

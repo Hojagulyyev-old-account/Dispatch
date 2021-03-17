@@ -247,7 +247,11 @@
              </div>
 
                <!-- DIV COL 3   -->
-
+            <div class="container">
+              {% if request.GET.messages %}
+              <h5 style="text-align:center; color:#da3d3d;">{{ request.GET.messages }}</h5>
+              {% endif %}
+            </div>
             <div class="col-lg-6">
               <div class="central-meta postbox">
                 <span class="create-post">Create post</span>
@@ -1084,14 +1088,14 @@
                                 <li><a class="bg-red" href="#" title="dislike Post"><i class="ti-thumb-down"></i></a></li>
                               </ul>
                             </figure>
-                            
+
 
                             <div class="description">
                               {% if post.type == 'image' %}
                               <a href="#" class="learnmore" data-ripple="">Learn More</a>
                               {% endif %}
-                              <p class="post_body ">
-                                {% if post.body|length >= 300 %}
+                              <p class="post_body">
+                                {% if post.body|length >= 200 %}
                                   {{ post.body|truncatewords:"25" }}
                                   <a href="#" title=""> Read More</a>
                                 {% else %}

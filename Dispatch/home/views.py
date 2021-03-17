@@ -7,6 +7,8 @@ from django.urls import reverse, reverse_lazy
 from .models import Post, Tag
 from django.core import serializers
 #from .forms import PostUpdateForm
+from django.contrib import messages
+import urllib
 # Create your views here.
 
 @login_required
@@ -53,9 +55,22 @@ def CreatePost(request):
                 new_hash = hash.split(' ')
                 c = 0
                 for i in new_hash:
+                    print(f'new_hash = > {new_hash}')
+                    if new_hash == ['']:
+                        # messages.error(request, 'Your hashtag is available !')
+                        context = {'messages':'Your hashtag is not available !'}
+                        return redirect('/?' + urllib.parse.urlencode(context))
                     c += 1
                     if c == 1:
                         print(i)
+                        d = 0
+                        for u in i:
+                            print(u)
+                            if u == '#':
+                                if d == 0:
+                                    d += 1
+                                else:
+                                    return redirect('home:home', resp = {'Your hashtag is available !'})
                         tags.append(i)
 
 
@@ -110,7 +125,10 @@ def UpdatePost(request, pk):
             tags_objs.append(t)
 
         post.image = image
-        post.body = body
+
+        if body != '':
+                post.body = body
+
         post.tag.set(tags_objs)
 
         post.save()
@@ -138,7 +156,10 @@ def DeletePost(request, pk):
 
 
 def find_hash_tag(request, hashtag):
-    tag = Tag.objects.get(title=hashtag)
+    try:
+        tag = Tag.objects.get(title=hashtag)
+    except Tag.DoesNotExist:
+        return HttpResponseRedirect(reverse('home:home'), {'message':'Something is wrong! or This hashtag was deleted!'})
     posts = Post.objects.filter(tag=tag)
     context = {
         'posts':posts,

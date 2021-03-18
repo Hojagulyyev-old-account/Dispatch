@@ -1,0 +1,125 @@
+{% extends 'account_base/base.html' %}
+{% load static %}
+
+{% block search %}
+<div class="top-search-area">
+    <form action="{% url 'users:grid'%}" method="get">
+        <input type="search" name="search" id="topSearch" placeholder="Search..." value="{{ request.GET.search }}">
+        <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+    </form>
+</div>
+{% endblock search %}
+
+{% block nav %}
+<div class="classynav">
+    <ul>
+        <li class="active"><a href="{% url 'users:grid' %}">Home</a></li>
+        <li><a href="{% url 'users:homepage' %}">Users</a></li>
+        <li><a href="{% url 'users:myprofile' %}">My Profile</a></li>
+        <li><a href="{% url 'users:editprofile' user.profiles.slug %}">Edit Profile</a></li>
+        <!-- <li><a href="#">Pages</a>
+            <ul class="dropdown">
+                <li><a href="index.html">- Home</a></li>
+                <li><a href="archive-list.html">- Archive List</a></li>
+                <li><a href="archive-grid.html">- Archive Grid</a></li>
+                <li><a href="single-post.html">- Single Post</a></li>
+                <li><a href="video-post.html">- Single Video Post</a></li>
+                <li><a href="contact.html">- Contact</a></li>
+                <li><a href="typography.html">- Typography</a></li>
+                <li><a href="login.html">- Login</a></li>
+            </ul>
+        </li> -->
+        <!-- <li><a href="#">Features</a>
+            <div class="megamenu">
+                <ul class="single-mega cn-col-4">
+                    <li><a href="index.html">- Home</a></li>
+                    <li><a href="archive-list.html">- Archive List</a></li>
+                    <li><a href="archive-grid.html">- Archive Grid</a></li>
+                    <li><a href="single-post.html">- Single Post</a></li>
+                    <li><a href="video-post.html">- Single Video Post</a></li>
+                    <li><a href="contact.html">- Contact</a></li>
+                    <li><a href="typography.html">- Typography</a></li>
+                    <li><a href="login.html">- Login</a></li>
+                </ul>
+            </div>
+        </li> -->
+
+    </ul>
+</div>
+{% endblock nav %}
+
+{% block content %}
+<div class="vizew-breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"> Blog Panel </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Breadcrumb Area End ##### -->
+
+<!-- ##### Archive Grid Posts Area Start ##### -->
+<div class="vizew-grid-posts-area mb-80">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-12 col-sm-12">
+                <!-- Archive Catagory & View Options -->
+                <div class="archive-catagory-view mb-50 d-flex align-items-center justify-content-between">
+                    <!-- Catagory -->
+                    <div class="archive-catagory">
+                        <h4><i class="fab fa-youtube" style="padding-right:5px"></i>{% if result %} Search result - {{ result }} posts {% else %} Grid of Posts {% endif %}</h4>
+                    </div>
+                    <!-- View Options -->
+                    <div class="view-options">
+                        <a href="{% url 'users:grid' %}" class="active"><i class="fa fa-th-large" aria-hidden="true"></i></a>
+                        <a href="{% url 'users:homepage' %}"><i class="fa fa-list-ul" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Single Blog Post -->
+                    {% for post in posts %}
+                    <div class="col-12 col-md-4 col-sm-12">
+                        <div class="single-post-area mb-50">
+                            <!-- Post Thumbnail -->
+                            <div class="post-thumbnail">
+                                <a href="{% url 'users:post_detail' post.id %}"><img style="width:350px; height:250px" src="{{ post.image.url }}" alt=""></a>
+                                <!-- Video Duration -->
+                                <!-- <span class="video-duration">{{ post.created|date:'d.m' }}</span> -->
+                            </div>
+
+                            <!-- Post Content -->
+                            <div class="post-content">
+                                <!-- <a href="#" class="post-cata cata-sm cata-primary">Alparslan</a> -->
+                                <a href="#" class="post-title">{{ post.title }}</a>
+                                <div class="post-meta d-flex">
+                                    <a href="#"><i class="fa fa-user fa-lg" style="padding-right:10px"></i>{{ post.author }}</a>
+                                    <i class="far fa-calendar-alt fa-lg" style="padding-right:10px"></i><span class="video-duration">{{ post.created|date:'d.m, Y' }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                <!-- Pagination -->
+                <!-- <nav class="mt-50">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
+                    </ul>
+                </nav> -->
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock content %}

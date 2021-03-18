@@ -1,11 +1,5 @@
 $(document).ready(function(){
 
-  const button = $('.owez-js-btn');
-  button.on('click', function(){
-    console.log('Works')
-    $(".error-msg").fadeOut(1000);
-  });
-
   var x = $("#username").on("keyup", function(){
     const i = x.val();
     var z = $('.secret').val();

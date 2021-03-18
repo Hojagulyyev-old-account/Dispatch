@@ -9,12 +9,18 @@ from django.core import serializers
 #from .forms import PostUpdateForm
 from django.contrib import messages
 import urllib
+from django.db.models import Q, Count
 # Create your views here.
 
 @login_required
 def home(request):
     profile = Profile.objects.get(user=request.user)
-    posts = Post.objects.filter(trash=False)
+    search = request.GET.get('python_search', '')
+
+    if search:
+        posts = Post.objects.filter(trash=False, body__icontains=search)
+    else:
+        posts = Post.objects.filter(trash=False)
 
 
     template_name = "home/home.html"

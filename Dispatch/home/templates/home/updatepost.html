@@ -76,15 +76,7 @@
                 <p>{{ post.image.url }}</p>
                 {% else %}
                 <span class="create-post">
-                  {% if messages %}
-
-                      {% for message in messages %}
-                        <small {% if message.tags %} class="error-msg"{% endif %} style='color:#da3d3d'>{{ message }}</small>
-                      {% endfor %}
-                  {% else %}
-
                   This post has no image
-                  {% endif %}
                 </span>
                 <div class="attachments">
                   <ul>

@@ -51,9 +51,9 @@
 			</span>
 		</div>
 		<div class="mh-head second">
-			<form class="mh-form">
-				<input placeholder="search" />
-				<a href="#/" class="fa fa-search"></a>
+			<form method=get action="{% url 'home:home' %}" class="mh-form">
+				<input class="jquerysearch" name="python_search" value="{{ request.GET.python_search }}" placeholder="search" />
+        <button type="hidden" name="button"><i class="fa fa-search"></i></button>
 			</form>
 		</div>
 		<nav id="menu" class="res-menu">
@@ -1689,6 +1689,7 @@
 	<script src="{% static 'js/jquery-stories.js' %}"></script>
 	<script src="{% static 'js/toast-notificatons.js' %}"></script>
   <script src="{% static 'js/owez.js' %}"></script>
+  <script src="{% static 'js/new_js.js' %}"></script>
 	<script src="{% static 'js/ajaxgoogle.js' %}"></script><!-- For timeline slide show -->
 	<!-- <script src="{% static 'js/google.js' %}"></script><for location picker map -->
 	<script src="{% static 'js/locationpicker.jquery.js' %}"></script><!-- for loaction picker map -->

@@ -12,6 +12,8 @@
 
              <div class="col-lg-3">
                <aside class="sidebar static left">
+
+
                  <!-- <div class="widget">
                    <div class="weather-widget low-opacity bluesh">
                      <div class="bg-image" style="background-image: url({% static 'images/resources/weather.jpg' %})"></div>
@@ -247,12 +249,11 @@
              </div>
 
                <!-- DIV COL 3   -->
-            <div class="container">
-              {% if request.GET.messages %}
-              <h5 style="text-align:center; color:#da3d3d;">{{ request.GET.messages }}</h5>
-              {% endif %}
-            </div>
+
             <div class="col-lg-6">
+               {% if request.GET.messages %}
+               <h6 style="text-align:center; color:#da3d3d;">{{ request.GET.messages }}</h6>
+               {% endif %}
               <div class="central-meta postbox">
                 <span class="create-post">Create post</span>
                 <form method="POST" action="{% url 'home:createpost' %}" enctype="multipart/form-data">

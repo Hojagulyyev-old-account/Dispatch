@@ -45,7 +45,6 @@ def CreatePost(request):
         tags = []
 
         hashtag = body.split('#')
-
         counter = 0
         for hash in hashtag:
             counter += 1
@@ -53,28 +52,19 @@ def CreatePost(request):
                 pass
             else:
                 new_hash = hash.split(' ')
+                if new_hash == ['']:
+                    # messages.error(request, 'Your hashtag is available !')
+                    context = {'messages':'Your hashtag is not available !'}
+                    return redirect('/?' + urllib.parse.urlencode(context))
                 c = 0
                 for i in new_hash:
-                    print(f'new_hash = > {new_hash}')
-                    if new_hash == ['']:
-                        # messages.error(request, 'Your hashtag is available !')
-                        context = {'messages':'Your hashtag is not available !'}
-                        return redirect('/?' + urllib.parse.urlencode(context))
                     c += 1
                     if c == 1:
-                        print(i)
-                        d = 0
-                        for u in i:
-                            print(u)
-                            if u == '#':
-                                if d == 0:
-                                    d += 1
-                                else:
-                                    return redirect('home:home', resp = {'Your hashtag is available !'})
                         tags.append(i)
 
 
         for tag in tags:
+            tag = tag.lower()
             t, created = Tag.objects.get_or_create(title=tag, slug=tag)
             tags_objs.append(t)
 
@@ -105,7 +95,6 @@ def UpdatePost(request, pk):
         tags = []
 
         hashtag = body.split('#')
-
         counter = 0
         for hash in hashtag:
             counter += 1
@@ -113,14 +102,18 @@ def UpdatePost(request, pk):
                 pass
             else:
                 new_hash = hash.split(' ')
+                if new_hash == ['']:
+                    # messages.error(request, 'Your hashtag is available !')
+                    context = {'messages':'Your hashtag is not available !'}
+                    return redirect('/?' + urllib.parse.urlencode(context))
                 c = 0
                 for i in new_hash:
                     c += 1
                     if c == 1:
-                        print(i)
                         tags.append(i)
 
         for tag in tags:
+            tag = tag.lower()
             t, created = Tag.objects.get_or_create(title=tag, slug=tag)
             tags_objs.append(t)
 
@@ -159,7 +152,8 @@ def find_hash_tag(request, hashtag):
     try:
         tag = Tag.objects.get(title=hashtag)
     except Tag.DoesNotExist:
-        return HttpResponseRedirect(reverse('home:home'), {'message':'Something is wrong! or This hashtag was deleted!'})
+        context = {'messages':'Hashtag does not exist! Maybe it\'s deleted !'}
+        return redirect('/?' + urllib.parse.urlencode(context))
     posts = Post.objects.filter(tag=tag)
     context = {
         'posts':posts,

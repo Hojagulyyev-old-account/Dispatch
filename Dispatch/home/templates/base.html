@@ -52,7 +52,7 @@
 		</div>
 		<div class="mh-head second">
 			<form method=get action="{% url 'home:home' %}" class="mh-form">
-				<input class="jquerysearch" name="python_search" value="{{ request.GET.python_search }}" placeholder="search" />
+				<input class="jquerysearch" name="python_search" maxlength="16" value="{{ request.GET.python_search }}" placeholder="search" />
         <button type="hidden" name="button"><i class="fa fa-search"></i></button>
 			</form>
 		</div>

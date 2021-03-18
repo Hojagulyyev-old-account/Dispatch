@@ -14,6 +14,7 @@ from django.db.models import Q, Count
 
 @login_required
 def home(request):
+    all = Post.objects.all().count()
     profile = Profile.objects.get(user=request.user)
     search = request.GET.get('python_search', '')
 
@@ -26,7 +27,8 @@ def home(request):
     template_name = "home/home.html"
     context = {
         'posts':posts,
-        'profile':profile
+        'profile':profile,
+        'all':all,
     }
     return render(request, template_name, context)
 

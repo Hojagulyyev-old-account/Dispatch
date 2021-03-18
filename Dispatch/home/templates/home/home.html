@@ -254,6 +254,8 @@
                {% if request.GET.messages %}
                <h6 style="text-align:center; color:#da3d3d;">{{ request.GET.messages }}</h6>
                {% endif %}
+
+
               <div class="central-meta postbox">
                 <span class="create-post">Create post</span>
                 <form method="POST" action="{% url 'home:createpost' %}" enctype="multipart/form-data">
@@ -330,6 +332,24 @@
                 </div>
                 </form>
               </div>
+
+
+
+
+              {% if request.GET %}
+              <div class="central-meta postbox">
+                <span class="create-post">Search result on {{ request.GET.python_search }}:<br><br><small>Found {{ posts.count }} posts</small></span>
+                <form enctype="multipart/form-data">
+                <div class="new-postbox">
+
+                  <div class="attachments">
+                    <button class="post-btn" type="submit" data-ripple="">Back to Home</button>
+                  </div>
+
+                </div>
+                </form>
+              </div>
+              {% endif %}
 
               <!-- add post new box -->
 

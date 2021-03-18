@@ -13,7 +13,7 @@
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="align-left">
-                      <h5>Update Post</h5>
+                      <h5> Update Post </h5>
                     </div>
                   </div>
                   <!-- <div class="col-lg-6">
@@ -75,7 +75,17 @@
 								</div>
                 <p>{{ post.image.url }}</p>
                 {% else %}
-                <span class="create-post">This post has no image</span>
+                <span class="create-post">
+                  {% if messages %}
+
+                      {% for message in messages %}
+                        <small {% if message.tags %} class="error-msg"{% endif %} style='color:#da3d3d'>{{ message }}</small>
+                      {% endfor %}
+                  {% else %}
+
+                  This post has no image
+                  {% endif %}
+                </span>
                 <div class="attachments">
                   <ul>
                     <li>
@@ -99,7 +109,7 @@
 									</div>
 
 									<div>
-										<button class="main-btn" type="submit" data-ripple="">Update</button>
+										<button class="main-btn owez-js-btn" type="submit" data-ripple="">Update</button>
 									</div>
 								</form>
             </div>

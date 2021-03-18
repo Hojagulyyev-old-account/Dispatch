@@ -117,10 +117,15 @@ def UpdatePost(request, pk):
             t, created = Tag.objects.get_or_create(title=tag, slug=tag)
             tags_objs.append(t)
 
-        post.image = image
+        if image != '':
+            post.image = image
+        #     messages.error(request, 'You forgot to change the post picture !')
+        #     return HttpResponseRedirect(reverse('home:updatepost', args=[post.id]))
+        # else:
+
 
         if body != '':
-                post.body = body
+            post.body = body
 
         post.tag.set(tags_objs)
 

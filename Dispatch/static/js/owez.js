@@ -1,5 +1,11 @@
 $(document).ready(function(){
 
+  const button = $('.owez-js-btn');
+  button.on('click', function(){
+    console.log('Works')
+    $(".error-msg").fadeOut(1000);
+  });
+
   var x = $("#username").on("keyup", function(){
     const i = x.val();
     var z = $('.secret').val();
@@ -32,15 +38,9 @@ $(document).ready(function(){
           postEl.html(postEl.html().replaceAll(v,
               `<a href="/hashtag/${lower}">${v}</a>`
           ));
-          // console.log(v, link);
-          // console.log(postEl.html());
-          // $(this).remove();
+
         }
-        //
-        // if (v !== 'undefined'){
-        //   v.replaceWith(link)
-        // }
-        //tag.replaceWith()
+
       });
 
   });

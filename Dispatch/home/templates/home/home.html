@@ -338,7 +338,13 @@
 
               {% if request.GET %}
               <div class="central-meta postbox">
-                <span class="create-post">Search result on {{ request.GET.python_search }}:<br><br><small>Found {{ posts.count }} posts</small></span>
+                <span class="create-post">Search result on {{ request.GET.python_search }}:<br><br>
+                  {% if posts.count != 0 %}
+                    <small>Found {{ posts.count }} posts</small>
+                  {% else %}
+                    <small>No posts found</small>
+                  {% endif %}
+                </span>
                 <form enctype="multipart/form-data">
                 <div class="new-postbox">
 
@@ -349,6 +355,24 @@
                 </div>
                 </form>
               </div>
+
+                    {% if posts.count == 0 %}
+                    <div class="central-meta postbox">
+                      <span class="create-post">Recommended posts</span>
+
+                      <div class="new-postbox">
+                        {% for r in rcmds %}
+                        <figure>
+                          <img src="{{ r.profile.avatar.url }}" style="width:40px; height:40px" alt="">
+                        </figure>
+                        <div class="newpst-input">
+                            <a href="/"><textarea name="body" rows="2" placeholder="Share some what you are thinking?">{{ r.body|truncatewords:"10" }}</textarea></a>
+                        </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                    {% endif %}
+
               {% endif %}
 
               <!-- add post new box -->

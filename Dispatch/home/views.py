@@ -17,6 +17,7 @@ def home(request):
     all = Post.objects.all().count()
     profile = Profile.objects.get(user=request.user)
     search = request.GET.get('python_search', '')
+    rcmds = Post.objects.all()[:3]
 
     if search:
         posts = Post.objects.filter(trash=False, body__icontains=search)
@@ -29,6 +30,7 @@ def home(request):
         'posts':posts,
         'profile':profile,
         'all':all,
+        'rcmds':rcmds,
     }
     return render(request, template_name, context)
 

@@ -366,7 +366,7 @@
                           <img src="{{ r.profile.avatar.url }}" style="width:40px; height:40px" alt="">
                         </figure>
                         <div class="newpst-input">
-                            <a href="/"><textarea name="body" rows="2" placeholder="Share some what you are thinking?">{{ r.body|truncatewords:"10" }}</textarea></a>
+                            <a href="/"><textarea name="body" rows="2" placeholder="Share some what you are thinking?">{% if r.body|length > 100 %}{{ r.body|truncatewords:"3" }}{% else %}{{ r.body|truncatewords:"8" }}{% endif %}</textarea></a>
                         </div>
                         {% endfor %}
                       </div>

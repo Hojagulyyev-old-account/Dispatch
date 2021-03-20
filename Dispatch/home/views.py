@@ -19,6 +19,10 @@ def home(request):
     search = request.GET.get('python_search', '')
     rcmds = Post.objects.all()[:3]
 
+    # if search == '':
+    #     context = {'messages':'Search form is empty!'}
+    #     return redirect('/?' + urllib.parse.urlencode(context))
+
     if search:
         posts = Post.objects.filter(trash=False, body__icontains=search)
     else:

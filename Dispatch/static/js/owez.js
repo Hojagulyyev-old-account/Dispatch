@@ -30,7 +30,7 @@ $(document).ready(function(){
           var clean_hash = v.substring(1)
           var lower = clean_hash.toLowerCase();
           postEl.html(postEl.html().replaceAll(v,
-              `<a href="/hashtag/${lower}">${v}</a>`
+              `<a href="/hashtag/${lower}"> ${v} </a>`
           ));
 
         }

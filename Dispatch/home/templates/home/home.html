@@ -1161,7 +1161,7 @@
                                     {% csrf_token %}
                                     <input class="iam" type="hidden" name="post_id" value="{{ post.id }}">
                                     <button  type="hidden" name="button" style="background:none;">
-                                    <div id='likes{{post.id}}' class="likes heart" title="Like/Dislike" style='color:#fa6342'>
+                                    <div id='likes{{post.id}}' class="likes heart" title="Like/Dislike" style='color:#adadfd'>
                                       ❤<sup style='position:absolute; margin-left:5px; font-size:12px; margin-top: 12px;' id="span{{post.id}}" class="like-count{{post.id}}">
                                         {{ post.posts_likes.count }}
                                       </sup>

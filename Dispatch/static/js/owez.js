@@ -5,9 +5,9 @@ $(document).ready(function(){
 
     const post_id = $(this).find('.iam').attr('value')
     const url = $(this).attr('action');
-    console.log(url)
+    // console.log(url)
 
-    const cssLike = $(`.likes${post_id}`).attr('style')
+    const cssLike = $(`#likes${post_id}`)
 
     let res;
     const likes = $(`.like-count${post_id}`).text()
@@ -25,11 +25,12 @@ $(document).ready(function(){
         console.log(tgg)
         if (tgg === 'liked'){
           res = intlike + 1
-
+          console.log($(cssLike).css('color','#f55442'))
         }else{
           res = intlike - 1
+          console.log($(cssLike).css('color','#adadfd'))
         }
-        console.log($(`#span${post_id}`).text(res))
+        $(`#span${post_id}`).text(res)
         // $(`#likes${}`)
       },
       error:function(response){

@@ -161,6 +161,7 @@ def UpdatePost(request, pk):
     # success_url = reverse_lazy('home:home')
 #
 def DeletePost(request, pk):
+    # AJAX JSON RESPONSE
     post = Post.objects.get(id=pk)
     post.trash = True
     post.save()

@@ -1094,7 +1094,7 @@
                 </div> -->
                 {% for post in posts %}
 
-                    <div class="central-meta item jqueryposts">
+                    <div class="central-meta item jqueryposts" id='post{{post.id}}'>
                       <div class="user-post">
                         <div class="friend-info">
                           <figure>
@@ -1105,11 +1105,11 @@
                               <div class="more-post-optns"><i class="ti-more-alt"></i>
                                 <ul>
                                   {% if post.profile.user == user %}
-                                    <li><i class="fa fa-pencil-square-o"></i><a href="{% url 'home:updateposthtml' post.id %}">Edit Post</a></li>
-                                    <li><i class="fa fa-trash-o"></i><a href="{% url 'home:deletepost' post.id %}">Delete Post</a></li>
+                                    <li style='text-align:center'><a href="{% url 'home:updateposthtml' post.id %}"> <i class="fa fa-pencil-square-o" style='margin-left:5px'></i>Update Post</a></li>
+                                    <li style='text-align:center'><a class="delete" id='{{ post.id }}' href="{% url 'home:deletepost' post.id %}"><i class="fa fa-trash-o"></i> Delete Post</a></li>
                                   {% else %}
                                     <!-- <li><i class="fa fa-wpexplorer"></i>Select as favourite</li>-->
-                                    <li class="bad-report"><i class="fa fa-flag"></i>Report Post</li>
+                                    <li style='text-align:center' class="bad-report"><i class="fa fa-flag"></i>Report Post</li>
                                   {% endif %}
                                   <!-- <li><i class="fa fa-address-card-o"></i>Boost This Post</li>
                                   <li><i class="fa fa-clock-o"></i>Schedule Post</li>

@@ -4,13 +4,27 @@ $(document).ready(function(){
   //   e.preventDefault();
   //   console.log($('this'))
   // });
+  const postbtn = $('#createpost').hide();
+  const textarea = $('#textarea');
+  console.log(textarea)
+  $(textarea).keyup(function(){
+    const space = $(this).val().split(' ').length - 1;
+    const chars = $(this).val().length
+
+    var ln = chars - space
+    // var spaces =
+    if (ln > 40){
+      postbtn.show();
+    }else{
+      postbtn.hide();
+    }
+  });
+
 
   $('.delete').on('click', function(e){
 
     var id = this.id;
     var href = this.href;
-    console.log(href)
-    console.log(id)
     e.preventDefault();
 
     $.ajax({
@@ -36,7 +50,7 @@ $(document).ready(function(){
       var yes = $.trim(ye)
 
       var real = ($("ye:contains('" + dInput + "')"));
-      console.log(yes)
+      // console.log(real)
       // $(yes).each(function(n,m){
       //   if (m.charAt(0) == '#'){
       //     console.log('yes#')

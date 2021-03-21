@@ -51,8 +51,8 @@
 			</span>
 		</div>
 		<div class="mh-head second">
-			<form method=get id="not" action="{% url 'home:home' %}" class="mh-form">
-				<input class="jquerysearch" name="python_search" maxlength="16" value="{{ request.GET.python_search }}" placeholder="search" />
+			<form method="get" id="not" action="{% url 'home:home' %}" class="mh-form">
+				<input id="nest" class="jquerysearch" name="python_search" maxlength="16" value="{{ request.GET.python_search }}" placeholder="search" />
         <button type="hidden" name="button"><i class="fa fa-search"></i></button>
 			</form>
 		</div>
@@ -1751,18 +1751,6 @@
 		// }
     //
 		// });
-    {% block js %}
-    {% endblock js %}
-
-</script>
-<script type="text/javascript">
-
-  $(document).ready(function(){
-
-
-
-    });
-
 </script>
 
 </body>

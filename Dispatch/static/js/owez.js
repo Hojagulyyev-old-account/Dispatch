@@ -1,5 +1,43 @@
 $(document).ready(function(){
 
+  $('.like-form').on('submit', function(e){
+    e.preventDefault();
+
+    const post_id = $(this).find('.iam').attr('value')
+    const url = $(this).attr('action');
+    console.log(url)
+
+    const cssLike = $(`.likes${post_id}`).attr('style')
+
+    let res;
+    const likes = $(`.like-count${post_id}`).text()
+    const intlike = parseInt(likes)
+
+    $.ajax({
+      type:'POST',
+      url:url,
+      data:{
+        'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+        'post_id':post_id,
+      },
+      success:function(response){
+        var tgg = response['like']
+        console.log(tgg)
+        if (tgg === 'liked'){
+          res = intlike + 1
+
+        }else{
+          res = intlike - 1
+        }
+        console.log($(`#span${post_id}`).text(res))
+        // $(`#likes${}`)
+      },
+      error:function(response){
+        console.log('error')
+      }
+    });
+  });
+
   var x = $("#username").on("keyup", function(){
     const i = x.val();
     var z = $('.secret').val();
@@ -39,7 +77,7 @@ $(document).ready(function(){
           var n = endsWithAny([".", "!", "?", ","], clean_hash);
             if (n === true){
               var clean_hash = clean_hash.slice(0, -1);
-              console.log(clean_hash)
+              // console.log(clean_hash)
             }
           var lower = clean_hash.toLowerCase();
           postEl.html(postEl.html().replaceAll(v,

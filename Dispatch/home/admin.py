@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Tag, Post
+from .models import Tag, Post, Like
 # Register your models here.
 
 @admin.register(Post)
@@ -15,3 +15,9 @@ class TagAdmin(admin.ModelAdmin):
     list_display = ('title','slug')
     list_display_links = ('title',)
     search_fields = ('title',)
+
+@admin.register(Like)
+class LikeAdmin(admin.ModelAdmin):
+    list_display = ('user', 'post')
+    list_display_links = ('user',)
+    search_fields = ('user',)

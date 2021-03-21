@@ -1156,8 +1156,18 @@
                                     <ins>1.2k</ins>
                                   </span>
                                 </li>
-                                <li>
-                                  <div class="likes heart" title="Like/Dislike">❤  <span>2K</span></div>
+                                <li class="here">
+                                  <form method="POST" class="like-form" action="{% url 'home:like' post.id %}">
+                                    {% csrf_token %}
+                                    <input class="iam" type="hidden" name="post_id" value="{{ post.id }}">
+                                    <button  type="hidden" name="button" style="background:none;">
+                                    <div id='likes{{post.id}}' class="likes heart" title="Like/Dislike" style='color:#fa6342'>
+                                      ❤<sup style='position:absolute; margin-left:5px; font-size:12px; margin-top: 12px;' id="span{{post.id}}" class="like-count{{post.id}}">
+                                        {{ post.posts_likes.count }}
+                                      </sup>
+                                    </div>
+                                    </button>
+                                  </form>
                                 </li>
                                 <li>
                                   <span class="comment" title="Comments">

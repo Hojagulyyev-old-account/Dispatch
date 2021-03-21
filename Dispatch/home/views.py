@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from account.models import Profile
 from django.urls import reverse, reverse_lazy
 # from django.views.generic.edit import UpdateView, DeleteView, CreateView
-from .models import Post, Tag
+from .models import Post, Tag, Like
 from django.core import serializers
 #from .forms import PostUpdateForm
 from django.contrib import messages
@@ -51,7 +51,7 @@ def profile(request, user):
     }
     return render(request, template_name, context)
 
-
+@login_required
 def CreatePost(request):
     user = request.user
     profile = Profile.objects.get(user=user)
@@ -101,6 +101,7 @@ def CreatePost(request):
 
     return HttpResponseRedirect(reverse('home:home'))
 
+@login_required
 def updatepost(request, pk):
     post = Post.objects.get(id=pk)
     context = {
@@ -108,6 +109,8 @@ def updatepost(request, pk):
     }
     return render(request, 'home/updatepost.html', context)
 
+
+@login_required
 def UpdatePost(request, pk):
     post = Post.objects.get(id=pk)
 
@@ -170,6 +173,7 @@ def UpdatePost(request, pk):
     # slug_url_kwarg = 'pk'
     # success_url = reverse_lazy('home:home')
 #
+@login_required
 def DeletePost(request, pk):
     # AJAX JSON RESPONSE
     post = Post.objects.get(id=pk)
@@ -177,7 +181,7 @@ def DeletePost(request, pk):
     post.save()
     return HttpResponseRedirect(reverse('home:home'))
 
-
+@login_required
 def find_hash_tag(request, hashtag):
     try:
         tag = Tag.objects.get(title=hashtag)
@@ -191,3 +195,24 @@ def find_hash_tag(request, hashtag):
     }
     return render(request, 'home/hashtags.html', context)
     # return JsonResponse(serializers.serialize('json', posts), safe=False)
+
+@login_required
+def like(request, pk):
+    user = request.user
+    post = Post.objects.get(id=pk)
+
+    liked = Like.objects.filter(user=user, post=post)
+
+    if not liked:
+        like = Like.objects.create(user=user,post=post)
+        cc = 'liked'
+    else:
+        like = Like.objects.filter(user=user,post=post)
+        cc = 'unliked'
+        like.delete()
+
+    context = {
+        'like':cc
+    }
+
+    return JsonResponse(context, safe=False)

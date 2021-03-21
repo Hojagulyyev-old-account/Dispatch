@@ -75,6 +75,12 @@ def CreatePost(request):
                     return redirect('/?' + urllib.parse.urlencode(context))
                 c = 0
                 for i in new_hash:
+                    syms = [',','.','?','!']
+                    como = i.endswith(tuple(syms))
+                    if como:
+                        i = i[:-1]
+                        print(i)
+
                     c += 1
                     if c == 1:
                         tags.append(i)
@@ -119,6 +125,7 @@ def UpdatePost(request, pk):
                 pass
             else:
                 new_hash = hash.split(' ')
+
                 if new_hash == ['']:
                     # messages.error(request, 'Your hashtag is available !')
                     context = {'messages':'Your hashtag is not available !'}

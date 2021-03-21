@@ -6,7 +6,7 @@ $(document).ready(function(){
   // });
   const postbtn = $('#createpost').hide();
   const textarea = $('#textarea');
-  console.log(textarea)
+  // console.log(textarea)
   $(textarea).keyup(function(){
     const space = $(this).val().split(' ').length - 1;
     const chars = $(this).val().length
@@ -42,7 +42,7 @@ $(document).ready(function(){
   $('.jquerysearch').keyup(function(){
 
   var dInput = $(this).val()
-  console.log(dInput)
+  // console.log(dInput)
   var cln = $('.post_body').text();
   if (dInput !== ''){
     $('.jqueryposts').each(function(e,v){

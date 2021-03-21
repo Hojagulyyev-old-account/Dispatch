@@ -21,6 +21,14 @@ $(document).ready(function(){
       // })
       $.each(parts, function(k, v){
         if (v.charAt(0) == '#'){
+
+          function endsWithAny(suffixes, string) {
+              return suffixes.some(function (suffix) {
+                  return string.endsWith(suffix);
+              });
+          }
+          var wate;
+
           // v.css('color', 'red')
           // var link = document.createElement('a');
           // $(link).attr('href', '/')
@@ -28,6 +36,11 @@ $(document).ready(function(){
           // console.log(link)
           // console.log(postEl.html());
           var clean_hash = v.substring(1)
+          var n = endsWithAny([".", "!", "?", ","], clean_hash);
+            if (n === true){
+              var clean_hash = clean_hash.slice(0, -1);
+              console.log(clean_hash)
+            }
           var lower = clean_hash.toLowerCase();
           postEl.html(postEl.html().replaceAll(v,
               `<a href="/hashtag/${lower}"> ${v} </a>`

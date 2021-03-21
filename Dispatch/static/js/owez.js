@@ -22,13 +22,14 @@ $(document).ready(function(){
       },
       success:function(response){
         var tgg = response['like']
-        console.log(tgg)
+        console.log(response['x'])
+        // console.log(tgg)
         if (tgg === 'liked'){
           res = intlike + 1
-          console.log($(cssLike).css('color','#f55442'))
+          $(cssLike).css('color','#f55442')
         }else{
           res = intlike - 1
-          console.log($(cssLike).css('color','#adadfd'))
+          $(cssLike).css('color','#adadfd')
         }
         $(`#span${post_id}`).text(res)
         // $(`#likes${}`)

@@ -31,6 +31,14 @@ def home(request):
     else:
         posts = Post.objects.filter(trash=False)
 
+    p = Post.objects.last()
+
+    likeds = []
+    liked_posts = p.posts_likes.all()
+    for i in liked_posts:
+        likeds.append(i.user.username)
+    print(likeds)
+
 
     template_name = "home/home.html"
     context = {
@@ -38,6 +46,7 @@ def home(request):
         'profile':profile,
         'all':all,
         'rcmds':rcmds,
+        'likeds':liked_posts
     }
     return render(request, template_name, context)
 
@@ -211,8 +220,9 @@ def like(request, pk):
         cc = 'unliked'
         like.delete()
 
+
     context = {
-        'like':cc
+        'like':cc,
     }
 
     return JsonResponse(context, safe=False)

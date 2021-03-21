@@ -35,6 +35,13 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now = True)
     trash = models.BooleanField(default=False)
 
+    def all_likers(self):
+        likers = []
+        liked_posts = self.posts_likes.all()
+        for i in liked_posts:
+            likers.append(i.user.username)
+        return likers
+
 
     def __str__(self):
         return f"{self.profile}-{self.created}"
@@ -45,8 +52,13 @@ class Post(models.Model):
         ordering = ('-created',)
 
 class Like(models.Model):
+    politra = (
+        ('#adadfd', '#adadfd'),
+        ('#fa6342', '#fa6342'),
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'users_likes')
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name = 'posts_likes')
+    color = models.CharField(choices=politra, max_length=8, default='#adadfd')
 
     def __str__(self):
-        return f"{self.user.username} likes {self.post}"
+        return self.user.username

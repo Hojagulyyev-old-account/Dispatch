@@ -31,14 +31,6 @@ def home(request):
     else:
         posts = Post.objects.filter(trash=False)
 
-    p = Post.objects.last()
-
-    likeds = []
-    liked_posts = p.posts_likes.all()
-    for i in liked_posts:
-        likeds.append(i.user.username)
-    print(likeds)
-
 
     template_name = "home/home.html"
     context = {
@@ -46,7 +38,6 @@ def home(request):
         'profile':profile,
         'all':all,
         'rcmds':rcmds,
-        'likeds':liked_posts
     }
     return render(request, template_name, context)
 
@@ -197,7 +188,7 @@ def find_hash_tag(request, hashtag):
     except Tag.DoesNotExist:
         context = {'messages':'Hashtag does not exist! Maybe it\'s deleted !'}
         return redirect('/?' + urllib.parse.urlencode(context))
-    posts = Post.objects.filter(tag=tag)
+    posts = Post.objects.filter(tag=tag, trash=False)
     context = {
         'posts':posts,
         'tag':tag,

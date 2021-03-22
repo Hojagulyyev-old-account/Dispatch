@@ -52,13 +52,8 @@ class Post(models.Model):
         ordering = ('-created',)
 
 class Like(models.Model):
-    politra = (
-        ('#adadfd', '#adadfd'),
-        ('#fa6342', '#fa6342'),
-    )
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'users_likes')
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name = 'posts_likes')
-    color = models.CharField(choices=politra, max_length=8, default='#adadfd')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'users_likes', blank=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name = 'posts_likes', blank=True)
 
     def __str__(self):
         return self.user.username

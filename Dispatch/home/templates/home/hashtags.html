@@ -1044,7 +1044,7 @@
                                   <form method="POST" class="like-form" action="{% url 'home:like' post.id %}">
                                     {% csrf_token %}
                                     <input class="iam" type="hidden" name="post_id" value="{{ post.id }}">
-                                    <button  type="hidden" name="button" style="background:none;">
+                                    <button type="hidden" name="button" style="background:none; width:1px; padding:10px">
                                     <div id='likes{{post.id}}' class="likes heart" title="Like/Dislike"
                                     {% if user.username in post.all_likers %}
                                     style='color:#f55442'

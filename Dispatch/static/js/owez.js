@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+  var enableSubmit = function(e){
+    $(e).removeAttr('disabled');
+  }
+
   $('.like-form').on('submit', function(e){
     e.preventDefault();
 
@@ -27,6 +31,8 @@ $(document).ready(function(){
         if (tgg === 'liked'){
           res = intlike + 1
           $(cssLike).css('color','#f55442')
+          $(`.disobtn${post_id}`).attr('disabled', true);
+          setTimeout(function() { enableSubmit($(`.disobtn${post_id}`))}, 500)
         }else{
           res = intlike - 1
           $(cssLike).css('color','#adadfd')

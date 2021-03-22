@@ -1,10 +1,29 @@
 $(document).ready(function(){
+  const id_post = $('.iam').attr('value')
+  const ya = $(`.disobtn${id_post}`)
+  var clicks = 0, timer = null;
 
-  var enableSubmit = function(e){
-    $(e).removeAttr('disabled');
-  }
+  $(ya).on("click", function(e){
+    clicks++;
+    // console.log('clicked')
+    if(clicks === 1){
+      timer = setTimeout(function(){
+        // console.log('SingleClick');
+        clicks = 0;
+      }, 1000)
+    }else{
+      clearTimeout(timer);
+      // console.log("Double Click");
+      clicks = 0;
+      e.preventDefault();
+    }
+  })
+  .on("dblclick", function(e){
+    e.preventDefault();
+  });
 
   $('.like-form').on('submit', function(e){
+
     e.preventDefault();
 
     const post_id = $(this).find('.iam').attr('value')
@@ -25,19 +44,26 @@ $(document).ready(function(){
         'post_id':post_id,
       },
       success:function(response){
+
         var tgg = response['like']
-        console.log(response['x'])
+        // console.log(response['x'])
         // console.log(tgg)
         if (tgg === 'liked'){
           res = intlike + 1
           $(cssLike).css('color','#f55442')
-          $(`.disobtn${post_id}`).attr('disabled', true);
-          setTimeout(function() { enableSubmit($(`.disobtn${post_id}`))}, 500)
         }else{
           res = intlike - 1
           $(cssLike).css('color','#adadfd')
         }
         $(`#span${post_id}`).text(res)
+
+        var enableSubmit = function(e){
+          console.log('Don\'t stop')
+          $(e).attr('disabled', false);
+        }
+
+          $(ya).attr('disabled', true);
+          setTimeout(function() { enableSubmit($(ya))}, 2000)
         // $(`#likes${}`)
       },
       error:function(response){
@@ -45,6 +71,11 @@ $(document).ready(function(){
       }
     });
   });
+
+
+
+
+
 
   var x = $("#username").on("keyup", function(){
     const i = x.val();
